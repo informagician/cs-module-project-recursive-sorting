@@ -5,16 +5,28 @@ def merge(arrA, arrB):
 
     print(arrA,arrB)
     # Your code here
+    i = 0
+    j = 0
 
     for k in range(0, elements):
-        if len(arrA) > 0 and len(arrB) > 0 and arrA[0] <= arrB[0]:
-            merged_arr[k] = arrA.pop(0)
-        elif len(arrA) > 0 and len(arrB) > 0 and arrA[0] > arrB[0]:
-            merged_arr[k] = arrB.pop(0)
-        elif len(arrA) > 0:
-            merged_arr[k] = arrA.pop(0)
-        elif len(arrB) > 0:
-            merged_arr[k] = arrB.pop(0)
+        if len(arrA) > i and len(arrB) > j:
+            if arrA[i] <= arrB[j]:
+                merged_arr[k] = arrA[i]
+                i += 1
+            else:
+                merged_arr[k] = arrB[j]
+                j += 1
+        elif len(arrA) > i:
+            merged_arr[k] = arrA[i]
+            i += 1
+        elif len(arrB) > j:
+            merged_arr[k] = arrB[j]
+            j += 1
+    print(merged_arr)
+        # if arrA[0] <= arrB[0]:
+        #     merged_arr[k] = arrA.pop(0)
+        # else:
+        #     merged_arr[k] = arrB.pop(0)
             
     return merged_arr
 
@@ -29,7 +41,7 @@ def merge_sort(arr):
         mid = len(arr) // 2
         left = merge_sort(arr[0:mid])
         right = merge_sort(arr[mid:])
-        merge(left,right)
+        arr = merge(left,right)
     return arr
     
 
